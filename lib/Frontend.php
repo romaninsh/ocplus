@@ -20,13 +20,16 @@ class Frontend extends ApiFrontend {
 			;
 
 		$this->template->tryDel('Menu');
-		$this->template->tryDel('logo');
+		$this->add('H1',null,'logo')->set('Open Cofee London Googlep + Invite Tracker');
+		$this->add('HtmlElement',null,'logo')->setElement('a')->setAttr('href','https://github.com/romaninsh/ocplus')
+			->set('Fork me on GitHub');
 
 		$cr=$this->add('CRUD');
 		$cr->setModel('OcPlus',array('invite_me'),array('invite_me','is_invited'));
 		if($cr->add_button){
 			$cr->grid->addColumn('confirm','invited','Invited');
 			$cr->grid->addOrder()->move('invited','before','edit')->now();
+			$cr->grid->dq->order('id desc');
 			$cr->add_button->set('Invite me to Google +');
 			if($_GET['invited']){
 				$cr->grid->getModel()->loadData($_GET['invited'])->set('is_invited',true)->update();
