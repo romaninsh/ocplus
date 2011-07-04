@@ -5,7 +5,7 @@ class Model_OcPlus extends Model_Table {
 	function init(){
 		parent::init();
 		$this->addField('invite_me') ->caption('Email to invite');
-		$this->addField('is_invited')->type('boolean');
+		$this->addField('is_invited')->type('boolean')->caption('Invited?');
 		$this->addField('invited_by') ;
 		$this->addField('deleted')->type('boolean');
 
